@@ -19,7 +19,7 @@ CURRENT_CHAT_FILE = os.path.join(CHAT_DIR, "current_chat.json")
 
 # Fungsi untuk mendapatkan daftar model dari Ollama
 def get_ollama_models():
-    url = st.secrets["API"]["tags"]
+    url = st.secrets["API"]["tags"] #Edit your API URL
     try:
         response = requests.get(url)
         if response.status_code == 200:
@@ -167,7 +167,7 @@ if selected_model:
         
         # Dapatkan respons dari Ollama
         def query_ollama(prompt, model):
-            url = st.secrets["API"]["generate"] 
+            url = st.secrets["API"]["generate"] #Edit your API URL
             headers = {"Content-Type": "application/json"}
             data = {
                 "model": model,
