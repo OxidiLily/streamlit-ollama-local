@@ -33,10 +33,10 @@ def get_ollama_models():
                 st.error("Format respons tidak sesuai.")
                 return []
         else:
-            st.error(f"Gagal mendapatkan daftar model: {response.status_code}")
+            st.error(f"Gagal mendapatkan Daftar Model dari Ollama: {response.status_code}")
             return []
     except Exception as e:
-        st.error(f"Error: {str(e)}")
+        st.error(f"Terjadi Kesalahan dalam mendapatkan Daftar Model")
         return []
 
 # Fungsi untuk membaca riwayat chat dari file
@@ -183,10 +183,10 @@ if selected_model:
                                 json_data = json.loads(decoded_line)
                                 full_response += json_data.get("response", "")
                             except json.JSONDecodeError:
-                                print("Skipping invalid JSON line:", decoded_line)
+                                st.error(f"Gagal mendapatkan respons dari Ollama")
                     return full_response
                 else:
-                    return f"Error: {response.status_code} - {response.text}"
+                    st.error("Terjadi kesalahan dalam mendapatkan respons dari Ollama")
 
         with st.spinner("Memproses..."):
             response = query_ollama(prompt, selected_model)
