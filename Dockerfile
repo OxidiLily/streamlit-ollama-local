@@ -15,7 +15,9 @@ COPY . .
 RUN python -m venv .venv
 RUN pip3 install -r requirements.txt
 EXPOSE 8501
-
+RUN apt update && apt install nano -y
+RUN  mkdir .streamlit && cd .streamlit
+# nano secrets.toml  nano config.toml
 HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
 
 ENTRYPOINT ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
